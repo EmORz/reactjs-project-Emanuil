@@ -21,16 +21,17 @@ class Login extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
 }
 
-async onSubmitHandler(e) {
+async onSubmitHandler() {
 
-  console.log(this.state)
-    const res = await login(this.state.username, this.state.password);
+  const username = this.state.username;
+  const password = this.state.password;
+
+    const res =  await login(username,password);
+
+    console.log(res)
   
 
-    if (!res.success) {
-        this.setState({error: res});
-        return;
-    }
+    
 
          
 }
@@ -45,7 +46,7 @@ async onSubmitHandler(e) {
             name="username"
             value={this.state.username}
             onChange={this.onChangeHandler}
-            label="Name"
+            label="Username"
           />
 
           <Input
