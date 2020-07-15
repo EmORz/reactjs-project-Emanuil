@@ -12,7 +12,7 @@ const Footer = () => {
                 <Link href= "#" title="Footer Going to 3" type='footer'></Link>
 
             </ul>
-            <p className={styles.footerSign} >Emanuil Project 2020 #Razgrad</p>
+            <p className={styles.footerSign} >Emanuil Project 2020</p>
 
         </footer>
     )
