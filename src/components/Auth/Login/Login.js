@@ -1,46 +1,50 @@
 import React from "react";
 
 import Input from "../../common/Input";
-import {login} from '../../../API/remote'
+import { login, getAllProducts } from "../../../API/remote";
 
 class Login extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      products: [],
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
-  
   onChangeHandler(e) {
     this.setState({ [e.target.name]: e.target.value });
-}
+  }
 
-async onSubmitHandler() {
+  async onSubmitHandler() {
 
-  const username = this.state.username;
-  const password = this.state.password;
+    const username = this.state.username;
+    const password = this.state.password;
+    const products = await getAllProducts()
 
-    const res =  await login(username,password);
+    this.setState({
+      products
+    })
+    const res = await login(username, password);
 
-    console.log(res)
+  }
+
+  componentDidMount() {
   
-
-    
-
-         
-}
+    getAllProducts()
+  }
+  
 
   render() {
-
     return (
+      
       <div className="container">
-  
+        {this.state.products.map(p => p.price)}
         <form onSubmit={this.onSubmitHandler}>
           <Input
             name="username"

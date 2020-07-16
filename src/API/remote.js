@@ -27,15 +27,29 @@ async function register(username, password) {
     body: JSON.stringify({
       username,
       password
-    })
+    }),
+     credentials: 'include'
   });
-  console.log(res +"poooooooooooooooooooooooikl")
+
 
   return  await res.json();
 }
 
 
+
+async function getAllProducts(){
+
+  const allProducts = "http://localhost:9999/api/product"
+
+  const promise = await fetch(allProducts)
+  const products = await promise.json()
+
+  return products
+
+}
+
 export {
   register,
-  login
+  login,
+  getAllProducts
 };
