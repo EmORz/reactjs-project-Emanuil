@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+
 import styles from "./app.module.css";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import Register from "./components/Auth/Register/Register";
 import NotFound from "./components/NotFound/NotFound";
 
+
 import Main from "./Main/Main";
 
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Login from "./components/Auth/Login/Login";
 
 class App extends Component {
@@ -62,4 +63,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default (App);

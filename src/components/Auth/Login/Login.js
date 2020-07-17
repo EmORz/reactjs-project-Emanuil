@@ -25,12 +25,18 @@ class Login extends React.Component {
 
     const username = this.state.username;
     const password = this.state.password;
+    
     const products = await getAllProducts()
 
     this.setState({
       products
     })
+
     const res = await login(username, password);
+debugger
+    console.log(res)
+
+
 
   }
 
@@ -44,7 +50,7 @@ class Login extends React.Component {
     return (
       
       <div className="container">
-        {this.state.products.map(p => p.price)}
+        {this.state.products.map(p => p.description)}
         <form onSubmit={this.onSubmitHandler}>
           <Input
             name="username"

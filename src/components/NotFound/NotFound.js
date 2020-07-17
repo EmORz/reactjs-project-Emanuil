@@ -12,12 +12,11 @@ class NotFound extends React.Component {
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
   async onSubmitHandler() {
-
-    const products = await getAllProducts()
+    const products = await getAllProducts();
 
     this.setState({
-      products
-    })
+      products,
+    });
 
   }
   componentDidMount() {
@@ -26,8 +25,10 @@ class NotFound extends React.Component {
   render() {
     return (
       <div className="FourOFour">
+        <button onClick={this.onSubmitHandler}>Click</button>
+        {this.state.products.map((p) => <p>{p.description}</p>)}
+        
         <img alt="404" />
-        {this.state.products.map(p => p.price)}
       </div>
     );
   }

@@ -19,12 +19,15 @@ module.exports = {
 
         login: (req, res, next) => {
          
-            console.log(req.body)
             const { username, password } = req.body;
 
+            console.log(req.body)
             models.User.findOne({ username })
                 .then((user) => Promise.all([user, user.matchPassword(password)]))
                 .then(([user, match]) => {
+            console.log('We are Here! Inside :)', user)
+            console.log('We are Here! Inside Match :)', match)
+
                 
                     if (!match) {
                         res.status(401).send('Invalid password');

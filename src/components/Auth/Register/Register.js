@@ -1,6 +1,7 @@
 import React from "react";
 import { register } from "../../../API/remote";
 import Input from "../../common/Input";
+import { useHistory, Redirect, withRouter } from "react-router-dom";
 
 class Register extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class Register extends React.Component {
     this.state = {
       username: "",
       password: "",
-      repassword:"",
+      repassword:"",   
+   
       error: false
     };
 
@@ -22,8 +24,9 @@ class Register extends React.Component {
 
   async onSubmitHandler(e) {
 
-    e.preventDefault();
+    const { history } = this.props;
 
+    console.log(this.props)
     if (this.state.password !== this.state.repassword) {
       this.setState({
         error: {
@@ -38,12 +41,16 @@ class Register extends React.Component {
     const username = this.state.username;
     const password = this.state.password;
 
+  
     const res = await register(username, password);
+ 
+
 
     
   }
 
   render() {
+ 
     let errors = null;
     if (this.state.error) {
         errors = (
@@ -89,4 +96,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default (Register);

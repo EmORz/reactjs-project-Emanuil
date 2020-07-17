@@ -17,7 +17,10 @@ async function register(username, password) {
 
  async function login(username, password) {
 
+  console.log('We are HERE!')
+
   const login = "http://localhost:9999/api/user/login";
+
 
   const res =  await fetch(login, {
     method: "POST",
