@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styles from "./index.module.css";
-import Origam from "../../components/origam";
+import Origam from "../../components/product";
 import PageWrapper from "../../components/page-wrapper";
 import Title from "../../components/title";
-import Origamis from "../../components/origamis";
+import Origamis from "../../components/products";
 
 class Publications extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class Publications extends Component {
   render() {
     return (
       <PageWrapper>
-        <Title title="Publication" />
+        <Title title="Home" />
 
         <Origamis />
       </PageWrapper>

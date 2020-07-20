@@ -11,17 +11,14 @@ const productSchema = new Schema({
     },
     quantity:{
 
-        type: Number,
-        required: true,
+        type: Number
     },
 
     price: {
-        type: Number,
-        required: true
+        type: Number
     },
     image:{
-        type: String,
-        required: true
+        type: String
     },
 
     author: {

@@ -1,6 +1,10 @@
 const getNavigation = (userId) => {
   const links = [
     {
+      title: "Home",
+      link: '/'
+    },
+    {
       title: "Register",
       link: "/register",
     },
