@@ -1,21 +1,21 @@
-import React from 'react'
-import Link from '../link'
-import styles from './index.module.css'
+import React, { Component } from "react";
+import styles from "./index.module.css";
+import Link from "../link";
+import getNavigation from "../../utils/navigation";
 
 const Footer = () => {
-    return (
-        <footer className={styles.footer}>
-            <ul>
-                <Link href= "/" title="Home" type='footer'></Link>
-                <Link href= "/register" title="Register" type='footer'></Link>
-                <Link href= "/login" title="Login" type='footer'></Link>
-                <Link href= "#" title="Footer Going to 3" type='footer'></Link>
+  const links = getNavigation();
+  return (
+    <footer className={styles.footer}>
+      <ul>
+        {links.map((nav) => {
+          return <Link href={nav.link} title={nav.title} type="footer" />;
+        })}
+  
+      </ul>
+      <p className={styles.footerSign}>Emanuil Project 2020</p>
+    </footer>
+  );
+};
 
-            </ul>
-            <p className={styles.footerSign} >Emanuil Project 2020</p>
-
-        </footer>
-    )
-}
-
-export default Footer
+export default Footer;

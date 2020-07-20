@@ -5,11 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 //import { BrowserRouter as Router } from 'react-router-dom';
 //import Navigation from './components/Navigation/Navigation';
+import Navigation from './navigation.js'
 
 ReactDOM.render(
   <React.StrictMode>
 
-    <App />
+    <Navigation />
 
 
   </React.StrictMode>,

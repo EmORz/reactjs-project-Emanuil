@@ -21,7 +21,7 @@ module.exports = {
          
             const { username, password } = req.body;
 
-            console.log(req.body)
+      
             models.User.findOne({ username })
                 .then((user) => Promise.all([user, user.matchPassword(password)]))
                 .then(([user, match]) => {

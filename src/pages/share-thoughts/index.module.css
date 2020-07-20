@@ -1,0 +1,14 @@
+.container {
+    display: inline-block;
+    width: 83%;
+    height: auto;
+    /* border:1px solid blue; */
+    margin-bottom: 5%;
+    text-align: center;
+  }
+
+  .textarea{
+      height: 300px;
+      width: 200px;
+      resize: none;
+  }
