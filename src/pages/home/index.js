@@ -1,37 +1,37 @@
 import React, { Component } from "react";
 import styles from "./index.module.css";
-import Origam from "../../components/product";
+import Product from "../../components/product";
 import PageWrapper from "../../components/page-wrapper";
 import Title from "../../components/title";
-import Origamis from "../../components/products";
+import Products from "../../components/products";
 
 class Publications extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      origamis: [],
+      products: []
     };
   }
 
-  getOrigamis = async () => {
-    const promise = await fetch("http://localhost:9999/api/origami");
-    const origamis = await promise.json();
+  getProducts = async () => {
+    const promise = await fetch("http://localhost:9999/api/product");
+    const products = await promise.json();
     this.setState({
-      origamis,
+      products,
     });
   };
 
-  renderOrigamis() {
-    const { origamis } = this.state;
+  renderProducts() {
+    const { products } = this.state;
 
-    return origamis.map((origam, index) => {
-      return <Origam key={origam._id} index={index} {...origam} />;
+    return products.map((product, index) => {
+      return <Product key={product._id} index={index} {...product} />;
     });
   }
 
   componentDidMount() {
-    this.getOrigamis();
+    this.getProducts();
   }
 
   render() {
@@ -39,7 +39,7 @@ class Publications extends Component {
       <PageWrapper>
         <Title title="Home" />
 
-        <Origamis />
+        <Products/>
       </PageWrapper>
     );
   }

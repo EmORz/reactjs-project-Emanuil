@@ -4,14 +4,29 @@ import Button from "../../components/button/submit-button";
 import Title from "../../components/title";
 import PageWrapper from "../../components/page-wrapper";
 import Input from "../../components/Input";
+import {login} from '../../API/remote'
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        email: '',
+        username: '',
         password:''
     };
+    this.onClick = this.onClick.bind(this)
+  }
+  async onClick(e){
+
+    e.preventDefault()
+
+    const res = await login(this.state.username, this.state.password)
+
+    if(res){
+      console.log('Success! Login')
+      this.props.history.push('/')
+    }
+
+    console.log('login Here ->', this.state)
   }
   onChange = (event, type) =>{
       const newState = {}
@@ -20,19 +35,17 @@ class Login extends Component {
       this.setState(newState)
   }
   render() {
-      const {email, password} = this.state
+      const {username, password} = this.state
       
     return (
       <PageWrapper>
         <div className={style.container}>
           <Title title="Login" />
-          <Input value={email} onChange={(e) => this.onChange(e, 'email')} label="Email" id="email" />
+          <Input value={username} onChange={(e) => this.onChange(e, 'username')} label="Username" id="username" />
 
           <Input value={password} onChange={(e) => this.onChange(e, 'password')} label="Password" id="password" />
-
-        
-
-          <Button title="Login" />
+          
+          <Button onClick={this.onClick} title="Login" />
         </div>
       </PageWrapper>
     );

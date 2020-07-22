@@ -2,7 +2,7 @@ import React from "react";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Home from "./pages/publications";
+import Home from "./pages/home";
 // import ShareThoughtsPage from './pages/share-thoughts'
 import Login from "./pages/login";
 import Register from "./pages/register";
