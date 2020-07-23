@@ -25,7 +25,7 @@ class Register extends Component {
   };
   async onClick(e) {
    e.preventDefault()
-    
+    console.log(this.state)
     if (this.state.password !== this.state.repassword) {
       this.setState({
         error: {
@@ -68,6 +68,7 @@ class Register extends Component {
 
           <Input
             value={username}
+            type="text"
             onChange={(e) => this.onChange(e, "username")}
             label="Username"
             id="username"
@@ -75,6 +76,7 @@ class Register extends Component {
 
           <Input
             value={password}
+            type="password"
             onChange={(e) => this.onChange(e, "password")}
             label="Password"
             id="password"
@@ -82,6 +84,7 @@ class Register extends Component {
 
           <Input
             value={repassword}
+            type="password"
             onChange={(e) => this.onChange(e, "repassword")}
             label="Re-Password"
             id="Re-Password"

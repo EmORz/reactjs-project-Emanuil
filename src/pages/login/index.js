@@ -41,9 +41,9 @@ class Login extends Component {
       <PageWrapper>
         <div className={style.container}>
           <Title title="Login" />
-          <Input value={username} onChange={(e) => this.onChange(e, 'username')} label="Username" id="username" />
+          <Input type="text" value={username} onChange={(e) => this.onChange(e, 'username')} label="Username" id="username" />
 
-          <Input value={password} onChange={(e) => this.onChange(e, 'password')} label="Password" id="password" />
+          <Input type="password" value={password} onChange={(e) => this.onChange(e, 'password')} label="Password" id="password" />
           
           <Button onClick={this.onClick} title="Login" />
         </div>

@@ -6,11 +6,18 @@ class Input extends Component {
         this.state = {  }
     }
     render() { 
+        const {
+            id,
+            label,
+            value, 
+            onChange,
+            type
+        } = this.props
         return ( 
             <div>
-                <label for={this.props.id}>
-                    {this.props.label}
-                    <input id={this.props.id} value={this.props.value} onChange={this.props.onChange}/>
+                <label for={id}>
+                    {label}
+                    <input id={id} type={type} value={value} onChange={onChange}/>
                 </label>
             </div>
          );
