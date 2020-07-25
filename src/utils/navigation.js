@@ -1,4 +1,4 @@
-const getNavigation = (userId) => {
+const getNavigation = (userid) => {
   const links = [
     {
       title: "Home",
@@ -12,6 +12,10 @@ const getNavigation = (userId) => {
       title: "Login",
       link: "/login",
     },
+    {
+      title: 'Profile',
+      link: '/profile/:'+userid
+    }
   ];
   return links;
 };

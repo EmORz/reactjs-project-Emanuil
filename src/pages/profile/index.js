@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PageWrapper from "../../components/page-wrapper";
-import Origamis from "../../components/origamis";
+
 
 class Profile extends Component {
   constructor(props) {
@@ -15,12 +15,12 @@ class Profile extends Component {
     this.getUser(this.props.match.params.userid);
   }
 
-  getUser = async (id) => {
-      
-    const promisse = await fetch(`http://localhost:9999/api/user?id=${id}`);
-
+  getUser = async (userid) => {
+      debugger
+    const promisse = await fetch(`http://localhost:9999/api/user?id=${userid}`);
+debugger
     const user = await promisse.json();
-
+debugger
     this.setState({
       username: user.username,
       posts: user.posts && user.posts.length,
@@ -34,7 +34,7 @@ class Profile extends Component {
           <p>User: {username}</p>
           <p>Posts: {posts}</p>
         </div>
-        <Origamis />
+ 
       </PageWrapper>
     );
   }

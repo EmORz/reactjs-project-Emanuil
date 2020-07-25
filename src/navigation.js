@@ -7,26 +7,17 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 //import Error from './pages/error'
-//import Profile from './pages/profile'
+import Profile from './pages/profile'
 import Error from "./pages/error";
 
 const Navigation = () => {
   return (
     <BrowserRouter>
       <Switch>
-        {/* <Route path='/' exact component={Publications}>
-                
-            </Route>
-            <Route path='/share' component={ShareThoughtsPage}>
-                
-                </Route> */}
-
         <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
-
+        <Route path="/profile/:userid" component={Profile} />
         <Route path="/register" component={Register} />
-
-        {/* <Route path='/profile/:userid' component={Profile}/> */}
         <Route component={Error} />
       </Switch>
     </BrowserRouter>
