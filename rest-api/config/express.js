@@ -7,8 +7,7 @@ const secret = 'secret';
 module.exports = (app) => {
   
     app.use(cors({
-        origin: 'http://localhost:3000',
-        credentials: true
+        exposedHeaders: 'Authorization'
       }));
 
     app.use(bodyParser.urlencoded({

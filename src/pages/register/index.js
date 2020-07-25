@@ -5,6 +5,7 @@ import Title from "../../components/title";
 import PageWrapper from "../../components/page-wrapper";
 import Input from "../../components/Input";
 import {register} from '../../API/remote'
+import authenticate from '../../utils/authenticate'
 
 class Register extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Register extends Component {
       password: "",
       error: false,
     };
-    this.onClick = this.onClick.bind(this)
+
   }
 
   onChange = (event, type) => {
@@ -23,9 +24,14 @@ class Register extends Component {
     newState[type] = event.target.value;
     this.setState(newState);
   };
-  async onClick(e) {
+   handlerSubmit= async (e)=> {
+
    e.preventDefault()
-    console.log(this.state)
+   const {
+    username,
+    password
+  } = this.state
+  
     if (this.state.password !== this.state.repassword) {
       this.setState({
         error: {
@@ -38,16 +44,20 @@ class Register extends Component {
       return;
     }
 
-    const username = this.state.username;
-    const password = this.state.password;
 
-    const res =  await register(username, password);
-
-    if(res){
-      console.log('Success!')
-
-      this.props.history.push('/login')
-    }
+    await authenticate(
+      "http://localhost:9999/api/user/register",
+      {
+        username, 
+        password,
+      },
+      () => {
+        console.log("Yeyyy");
+        this.props.history.push("/");
+      },(e)=>{
+        console.log('Érror', e)
+      }
+    );
   };
   render() {
     const { username, password, repassword } = this.state;
@@ -62,7 +72,7 @@ class Register extends Component {
     }
     return (
       <PageWrapper>
-        <div className={style.container}>
+        <form className={style.container} onSubmit={this.handlerSubmit}>
           {errors}
           <Title title="Register" />
 
@@ -90,8 +100,8 @@ class Register extends Component {
             id="Re-Password"
           />
 
-          <SubmitButton onClick={this.onClick} title="Register" />
-        </div>
+          <SubmitButton title="Register" />
+        </form>
       </PageWrapper>
     );
   }

@@ -11,6 +11,7 @@ async function register(username, password) {
       username,      
       password,
     }),
+     credentials: 'include'
   });
 
   return await res.json();
