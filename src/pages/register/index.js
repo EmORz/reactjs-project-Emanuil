@@ -4,8 +4,9 @@ import SubmitButton from "../../components/button/submit-button";
 import Title from "../../components/title";
 import PageWrapper from "../../components/page-wrapper";
 import Input from "../../components/Input";
-import {register} from '../../API/remote'
+
 import authenticate from '../../utils/authenticate'
+import UserContext from '../../Context'
 
 class Register extends Component {
   constructor(props) {
@@ -19,6 +20,8 @@ class Register extends Component {
 
   }
 
+  static contextType = UserContext
+
   onChange = (event, type) => {
     const newState = {};
     newState[type] = event.target.value;
@@ -31,7 +34,7 @@ class Register extends Component {
     username,
     password
   } = this.state
-  
+  debugger
     if (this.state.password !== this.state.repassword) {
       this.setState({
         error: {
@@ -51,8 +54,9 @@ class Register extends Component {
         username, 
         password,
       },
-      () => {
-        console.log("Yeyyy");
+      (user) => {
+        this.context.logIn(user)
+
         this.props.history.push("/");
       },(e)=>{
         console.log('Érror', e)

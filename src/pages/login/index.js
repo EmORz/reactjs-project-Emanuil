@@ -4,8 +4,8 @@ import Button from "../../components/button/submit-button";
 import Title from "../../components/title";
 import PageWrapper from "../../components/page-wrapper";
 import Input from "../../components/Input";
-import { login } from "../../API/remote";
 import authenticate from "../../utils/authenticate";
+import UserContext from '../../Context'
 
 class Login extends Component {
   constructor(props) {
@@ -15,52 +15,31 @@ class Login extends Component {
       password: "",
     };
   }
+
+  static contextType = UserContext
+
   handleSubmit = async (e) => {
     e.preventDefault();
 
     const { username, password } = this.state;
     debugger;
-
-    //const test = await login(username, password)
-
-    fetch('http://localhost:9999/api/user/login',{
-      method:"POST",
-      body: JSON.stringify({
-        username, password
-      }),
-      headers: {'Content-Type': 'application/json'}
-    }).then(promisse =>{
-
-      const authToken = promisse.headers.get('Authorization')
-      document.cookie = 'x-auth-token='+authToken
-
-      this.props.history.push('/')
-      
-      return promisse.json()
-
-    }
-     
-
-      
-    ).then(data=>{
-      console.log(data)
-    })
+    console.log(this.context)
 
     
-    // await authenticate(
-    //   "http://localhost:9999/api/user/login",
-    //   {
-    //     username, 
-    //     password,
-    //   },
-    //   () => {
-    //     console.log("Yeyyy");
-    //     this.props.history.push("/");
-    //   },(e)=>{
-    //     console.log('Érror', e)
-    //   }
-    // );
+    await authenticate(
+      "http://localhost:9999/api/user/login",
+      {
+        username, 
+        password,
+      },
+      (user) => {
+        this.context.logIn(user)
 
+        this.props.history.push("/");
+      },(e)=>{
+        console.log('Érror', e)
+      }
+    );
 
   };
   handleChange = (event, type) => {

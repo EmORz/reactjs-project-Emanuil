@@ -4,6 +4,7 @@ import Product from "../../components/product";
 import PageWrapper from "../../components/page-wrapper";
 import Title from "../../components/title";
 import Products from "../../components/products";
+import UserContext from '../../Context'
 
 class Publications extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class Publications extends Component {
       products: []
     };
   }
+  
+  static contextType = UserContext
 
   getProducts = async () => {
     const promise = await fetch("http://localhost:9999/api/product");
@@ -35,6 +38,7 @@ class Publications extends Component {
   }
 
   render() {
+    console.log(this.context)
     return (
       <PageWrapper>
         <Title title="Home" />

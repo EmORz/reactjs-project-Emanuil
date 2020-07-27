@@ -11,13 +11,18 @@ const authenticate = async (url, body, onSuccess, onFailure)=>{
            
           });
 
-          const authToken = promise.headers.get('Authorization')
+          const authToken = await promise.headers.get('Authorization')
           document.cookie = `x-auth-token=${authToken}`
 
           const response = await promise.json()
 
           if(response.username && authToken){
-              onSuccess()
+              onSuccess({
+                  username: response.username,
+                  id: response._id
+              })
+          }else{
+              onFailure()
           }
 
 

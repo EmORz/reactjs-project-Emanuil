@@ -1,45 +1,82 @@
 import React, { Component } from "react";
+import UserContext from "./Context";
 
-import styles from "./app.module.css";
-import Footer from "./components/footer";
-import Header from "./components/header";
-
-
-
-
-import { BrowserRouter, Switch } from "react-router-dom";
-
+function getCookie(name) {
+  const cookieValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return cookieValue ? cookieValue[2] : null;
+}
 class App extends Component {
-  
   constructor(props) {
     super(props);
-    this.onLogout = this.onLogout.bind(this);
+
+    this.state = {
+      loggedIn: false,
+      user: null,
+    };
   }
 
-  onLogout() {
-    localStorage.clear();
-    this.props.history.push("/");
-  }
+  logIn = (user) => {
+    this.setState({
+      loggedIn: !this.state.loggedIn,
+      user,
+    });
+  };
+  logOut = () => {
+    document.cookie = "x-auth-token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    this.setState({
+      loggedIn: false,
+      user: null,
+    });
+  };
 
+  componentDidMount(){
+    const token = getCookie('x-auth-token')
+
+    if(!token) {
+      this.logOut()
+      return
+    }
+
+
+    fetch('http://localhost:9999/api/user/verify', {
+      method: 'POST',
+      body: JSON.stringify({
+        token
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(promise => {
+      console.log(promise)
+      return promise.json()
+    }).then(response => {
+      if(response.status) {
+        this.logIn({
+          username: response.user.username,
+          id: response.user._id
+        })
+      } else {
+        this.logOut()
+      }
+    })
+  }
   render() {
+    const {loggedIn, user}= this.state
+    if (loggedIn === null) {
+      return (<div>Loading...</div>)
+    }
     return (
-      <BrowserRouter>
-        <div className={styles.app}>
-          <Header />
-
-          <div className={styles.container}>
-            <Switch>
-         
-
-             
-            </Switch>
-          </div>
-
-          <Footer />
-        </div>
-      </BrowserRouter>
-    );
+    <UserContext.Provider value={
+      {
+        loggedIn, user,
+        logIn: this.logIn,
+        logOut: this.logOut
+      }
+    }>
+      {this.props.children}
+      </UserContext.Provider>
+    )
   }
 }
 
-export default (App);
+export default App;
