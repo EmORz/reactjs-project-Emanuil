@@ -17,7 +17,7 @@ class Input extends Component {
             <div>
                 <label for={id}>
                     {label}
-                    <input id={id} type={type} value={value} onChange={onChange}/>
+                    <input id={id} type={type || "text"} value={value} onChange={onChange}/>
                 </label>
             </div>
          );

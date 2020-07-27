@@ -55,7 +55,7 @@ class Login extends Component {
         <form className={style.container} onSubmit={this.handleSubmit}>
           <Title title="Login" />
           <Input
-            type="text"
+      
             value={username}
             onChange={(e) => this.handleChange(e, "username")}
             label="Username"

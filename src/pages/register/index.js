@@ -82,7 +82,7 @@ class Register extends Component {
 
           <Input
             value={username}
-            type="text"
+           
             onChange={(e) => this.onChange(e, "username")}
             label="Username"
             id="username"
