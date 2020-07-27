@@ -2,10 +2,19 @@ import React, { Component } from "react";
 import styles from "./index.module.css";
 import Link from "../link";
 import getNavigation from "../../utils/navigation";
+import UserContext from '../../Context'
 
 class Header extends Component {
+
+  static contextType = UserContext
   render() {
-    const links = getNavigation();
+
+    const {
+      user,
+      loggedIn
+    } = this.context
+
+    const links = getNavigation(loggedIn, user);
     return (
       <header className={styles.navigation}>
         <ul>

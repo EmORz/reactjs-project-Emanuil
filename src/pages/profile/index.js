@@ -25,14 +25,14 @@ class Profile extends Component {
 
   getUser = async (userid) => {
       
-    //const promisse = await fetch(`http://localhost:9999/api/user?id=${userid}`);
+    const promisse = await fetch(`http://localhost:9999/api/user?id=${userid}`);
 
-   // const user = await promisse.json();
-
-    // this.setState({
-    //   username: user.username,
-    //   posts: user.posts && user.posts.length,
-    // });
+   const user = await promisse.json();
+debugger
+    this.setState({
+      username: user.username,
+      posts: user.posts && user.posts.length,
+    });
   };
   render() {
     const { username, posts } = this.state;

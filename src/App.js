@@ -17,12 +17,19 @@ class App extends Component {
 
   logIn = (user) => {
     this.setState({
-      loggedIn: !this.state.loggedIn,
+      loggedIn: true,
       user,
     });
   };
   logOut = () => {
     document.cookie = "x-auth-token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+ 
+
+    fetch(`http://localhost:9999/api/user/logout`, {
+      method: 'POST',
+      credentials: 'include'
+    }).then(res => res.text());
+
     this.setState({
       loggedIn: false,
       user: null,
@@ -30,6 +37,7 @@ class App extends Component {
   };
 
   componentDidMount(){
+ 
     const token = getCookie('x-auth-token')
 
     if(!token) {
