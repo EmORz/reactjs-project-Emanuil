@@ -7,19 +7,9 @@ const productSchema = new Schema({
 
     description: {
         type: String,
-        required: true,
+        required: true
     },
-    quantity:{
-
-        type: Number
-    },
-
-    price: {
-        type: Number
-    },
-    image:{
-        type: String
-    },
+   
 
     author: {
         type: ObjectId,

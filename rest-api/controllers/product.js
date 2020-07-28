@@ -8,14 +8,15 @@ module.exports = {
     },
 
     post: (req, res, next) => {
-        const { description, quantity, price, image } = req.body;
+        const { description } = req.body;
         const { _id } = req.user;
+        console.log(_id)
 
       
-        models.Product.create({ description, quantity, price, image, author: _id })
+        models.Product.create({ description })
             .then((createdOrigami) => {
                 return Promise.all([
-                    models.User.updateOne({ _id }, { $push: { posts: createdOrigami } }),
+                    models.User.updateOne({ _id }, { $push: { purchase: createdOrigami } }),
                     models.Product.findOne({ _id: createdOrigami._id })
                 ]);
             })

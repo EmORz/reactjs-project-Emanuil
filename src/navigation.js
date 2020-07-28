@@ -12,6 +12,7 @@ import Error from "./pages/error";
 import About from "./pages/about";
 import UserContex from "./Context";
 import UserContext from "./Context";
+import CreateProduct from "./pages/create-product";
 
 class Navigation extends Component {
   static contextType = UserContext;
@@ -28,6 +29,7 @@ class Navigation extends Component {
           {loggedIn && <Route path="/profile/:userid" component={Profile} />}
           <Route path="/register" component={Register} />
           <Route path="/about" component={About} />
+          {loggedIn && <Route path="/create-product" component={CreateProduct} />}
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

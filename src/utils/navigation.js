@@ -13,6 +13,11 @@ const getNavigation = (loggedIn, user) => {
       title: "About",
       link: "/about",
     }
+    ,
+    {
+      title: "Create Product",
+      link: "/create-product",
+    }
     
   ];
   const guestLinks = [
