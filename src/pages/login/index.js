@@ -22,8 +22,7 @@ class Login extends Component {
     e.preventDefault();
 
     const { username, password } = this.state;
-    debugger;
-    console.log(this.context)
+
 
     
     await authenticate(

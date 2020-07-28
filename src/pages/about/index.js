@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import Raper from "../../components/page-wrapper";
 import styles from "./index.module.css";
+import UserContext from '../../Context'
 
 class About extends Component {
+
+  static contextType = UserContext
+
+  
   render() {
+   
     return (
       <Raper>
         <div className={styles.container}>
@@ -37,6 +43,7 @@ class About extends Component {
                   type="text"
                   id="description"
                   placeholder="Вашият въпрос ...?"
+           
                 ></textarea>
                 <br />
 
