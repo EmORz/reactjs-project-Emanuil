@@ -8,7 +8,12 @@ const getNavigation = (loggedIn, user) => {
     {
       title: 'Profile',
       link: `/profile/${user && user.id}`
+    },
+    {
+      title: "About",
+      link: "/about",
     }
+    
   ];
   const guestLinks = [
     {
@@ -22,6 +27,10 @@ const getNavigation = (loggedIn, user) => {
     {
       title: "Login",
       link: "/login",
+    },
+    {
+      title: "About",
+      link: "/about",
     }
     
   ];

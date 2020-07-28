@@ -9,6 +9,7 @@ import Register from "./pages/register";
 //import Error from './pages/error'
 import Profile from './pages/profile'
 import Error from "./pages/error";
+import About from "./pages/about";
 
 const Navigation = () => {
   return (
@@ -18,6 +19,7 @@ const Navigation = () => {
         <Route path="/login" component={Login} />
         <Route path="/profile/:userid" component={Profile} />
         <Route path="/register" component={Register} />
+        <Route path="/about" component={About} />
         <Route component={Error} />
       </Switch>
     </BrowserRouter>

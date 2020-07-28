@@ -38,7 +38,7 @@ class Publications extends Component {
   }
 
   render() {
-    console.log(this.context)
+
     return (
       <PageWrapper>
         <Title title="Home" />

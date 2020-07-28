@@ -1,0 +1,64 @@
+import React, { Component } from "react";
+import Raper from "../../components/page-wrapper";
+import styles from "./index.module.css";
+
+class About extends Component {
+  render() {
+    return (
+      <Raper>
+        <div className={styles.container}>
+          <div>
+            <h1>Контакти</h1>
+            <br></br>
+
+            <h2>За връзка с нас:</h2>
+
+            <div>
+              <p>
+                Център за обслужване на клиенти тел. 084 440 40 81, 084 480 48
+                80 E-mail: service@emo.project.bg
+              </p>
+            </div>
+
+            <div>
+              <div>
+                <br></br>
+                <h2>
+                  <b>Работно време</b> :
+                </h2>
+                <p>9.00 - 17.00 ч. - понеделник до петък</p>
+              </div>
+              <br></br>
+              <div className={styles.formElement}>
+              <form  >
+                <label for="description">Форма за въпроси?</label>
+                <br />
+                <textarea
+                  type="text"
+                  id="description"
+                  placeholder="Вашият въпрос ...?"
+                ></textarea>
+                <br />
+
+                <button type="submit" class="btn">
+                  Send
+                </button>
+              </form>
+              </div>
+            
+              <br></br>
+              <iframe width="800" height="800" src="https://docs.google.com/forms/d/e/1FAIpQLScK9OCKP18NZW1IhyVbRWoe6e1ISMZJaDL1nFr5w6R_rXhGSg/viewform"></iframe>
+              <br></br>
+            </div>
+            <br></br>
+            <h1>Ще ни намериш тук!</h1>
+            <iframe width="800" height="800" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d385.8819870632953!2d26.52640124686279!3d43.52674131364883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40af0e86d16cde67%3A0x65e0237e5731aa47!2z0KDQtdCz0LjQvtC90LDQu9C90LAg0LHQuNCx0LvQuNC-0YLQtdC60LAg0J_RgNC-0YQuINCR0L7Rj9C9INCf0LXQvdC10LIg0KDQsNC30LPRgNCw0LQ!5e0!3m2!1sbg!2sbg!4v1561963978132!5m2!1sbg!2sbg"></iframe>
+            <br />
+          </div>
+        </div>
+      </Raper>
+    );
+  }
+}
+
+export default About;

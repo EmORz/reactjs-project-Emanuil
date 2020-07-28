@@ -10,7 +10,6 @@ class Error extends Component {
      
         </div>
 
-        // eslint-disable-next-line jsx-a11y/alt-text
         <img  src="https://thumbs.dreamstime.com/b/page-not-found-design-template-error-flat-line-concept-link-to-non-existent-document-no-results-magnifying-glass-156396935.jpg"/>
 
      
