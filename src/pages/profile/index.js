@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PageWrapper from "../../components/page-wrapper";
 import UserContext from '../../Context'
+import Button from '../../components/button/submit-button'
+import style from './index.module.css'
 
 
 class Profile extends Component {
@@ -15,7 +17,7 @@ class Profile extends Component {
   static contextType = UserContext
 
   logOut = ()=>{
-    debugger
+ 
     this.context.logOut()
     this.props.history.push('/')
   }
@@ -28,7 +30,7 @@ class Profile extends Component {
     const promisse = await fetch(`http://localhost:9999/api/user?id=${userid}`);
 
    const user = await promisse.json();
-debugger
+
     this.setState({
       username: user.username,
       posts: user.posts && user.posts.length,
@@ -38,12 +40,13 @@ debugger
     const { username, posts } = this.state;
     return (
       <PageWrapper>
-        <div>
+        <form className={style.container} onSubmit={this.logOut}>
           <p>User: {username}</p>
           <p>Posts: {posts}</p>
 
-          <button onClick={this.logOut}>LogOut</button>
-        </div>
+          <Button  title="Logout" />
+          {/* <button onClick={this.logOut}>LogOut</button> */}
+        </form>
  
       </PageWrapper>
     );

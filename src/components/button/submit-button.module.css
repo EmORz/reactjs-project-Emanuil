@@ -1,19 +1,21 @@
-.submit{
-    background-color: #234465;
-    color: white;
-    padding: 1%;
-    width: 7%;
-    border-radius: 6px;
-    display: block;
+.submit {
+    background: #234465;
+    color: #fff;
+    padding: 10px;
+    width: 100px;
+    border-radius: 5px;
+    /* display: block; */
     margin: 0 auto;
-    border:none;
-    margin-top: 0.5%;
+    border: none;
     border: 2px solid white;
-    margin-bottom: 2%;
-}
-.submit:hover{
-    background-color: white;
+    margin: 10px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .submit:hover{
+    background-color: #fff;
     border: 2px solid #234465;
     color: #234465;
     font-style: italic;
-}
+  }

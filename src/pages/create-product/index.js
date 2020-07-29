@@ -10,6 +10,9 @@ class CreateProduct extends Component {
     super(props);
     this.state = {
       description: "",
+      quantity: 0,
+      price: 0,
+      imageUrl: "",
     };
   }
   handleChange = (event, type) => {
@@ -20,21 +23,19 @@ class CreateProduct extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-   // const { description } = this.state;
-    //ToDo -> create post request
-    debugger;
-    const promise = await fetch('http://localhost:9999/api/product', {
+    const { description, quantity, price, imageUrl } = this.state;
+
+      await fetch("http://localhost:9999/api/product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({...this.state}),
-      credentials: 'include'
+      body: JSON.stringify({ ...this.state}),
+      credentials: "include",
     });
-
   };
   render() {
-    const { description } = this.state;
+    const { description, quantity, price, imageUrl } = this.state;
     return (
       <PageWrapper>
         <form className={style.container} onSubmit={this.handleSubmit}>
@@ -44,6 +45,24 @@ class CreateProduct extends Component {
             onChange={(e) => this.handleChange(e, "description")}
             label="Description"
             id="description"
+          />
+          <Input
+            value={quantity}
+            onChange={(e) => this.handleChange(e, "quantity")}
+            label="Quantity"
+            id="quantity"
+          />
+          <Input
+            value={price}
+            onChange={(e) => this.handleChange(e, "price")}
+            label="Price"
+            id="price"
+          />
+          <Input
+            value={imageUrl}
+            onChange={(e) => this.handleChange(e, "imageUrl")}
+            label="Image"
+            id="image"
           />
 
           <Button title="Create" />
