@@ -13,6 +13,7 @@ class CreateProduct extends Component {
       quantity: 0,
       price: 0,
       imageUrl: "",
+      title: ""
     };
   }
   handleChange = (event, type) => {
@@ -23,8 +24,9 @@ class CreateProduct extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { description, quantity, price, imageUrl } = this.state;
+    // const { description, quantity, price, imageUrl } = this.state;
 
+    console.log(this.state)
       await fetch("http://localhost:9999/api/product", {
       method: "POST",
       headers: {
@@ -35,11 +37,17 @@ class CreateProduct extends Component {
     });
   };
   render() {
-    const { description, quantity, price, imageUrl } = this.state;
+    const { description, quantity, price, imageUrl, title } = this.state;
     return (
       <PageWrapper>
         <form className={style.container} onSubmit={this.handleSubmit}>
           <Title title="Create Product" />
+          <Input
+            value={title}
+            onChange={(e) => this.handleChange(e, "title")}
+            label="Title"
+            id="title"
+          />
           <Input
             value={description}
             onChange={(e) => this.handleChange(e, "description")}

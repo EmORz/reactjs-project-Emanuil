@@ -33,7 +33,7 @@ class Products
         this.getProducts()
     }
     render() { 
-        return ( <div>Products!
+        return ( <div>
             {
                 this.renderProducts()
             }

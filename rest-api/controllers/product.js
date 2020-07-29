@@ -8,12 +8,12 @@ module.exports = {
     },
 
     post: (req, res, next) => {
-        const { description, quantity, price, imageUrl } = req.body;
+        const { description, quantity, price, imageUrl, title } = req.body;
         const { _id } = req.user;
  
 
       
-        models.Product.create({ description, quantity, price, imageUrl })
+        models.Product.create({ description, quantity, price, imageUrl, title })
             .then((createdOrigami) => {
                 console.log("Yep: ",createdOrigami)
                 return Promise.all([

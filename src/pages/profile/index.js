@@ -45,7 +45,7 @@ class Profile extends Component {
           <p>Posts: {posts}</p>
 
           <Button  title="Logout" />
-          {/* <button onClick={this.logOut}>LogOut</button> */}
+   
         </form>
  
       </PageWrapper>

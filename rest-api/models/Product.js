@@ -5,6 +5,9 @@ const { String, Number, Boolean, ObjectId } = Schema.Types;
 
 const productSchema = new Schema({
 
+    title:{
+        type: String
+    },
     description: {
         type: String,
         required: true

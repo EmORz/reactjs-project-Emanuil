@@ -21,7 +21,7 @@ class Publications extends Component {
     const promise = await fetch("http://localhost:9999/api/product");
     const products = await promise.json();
     this.setState({
-      products,
+      products
     });
   };
 
