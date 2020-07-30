@@ -12,7 +12,7 @@ class CreateProduct extends Component {
       description: "",
       quantity: 0,
       price: 0,
-      imageUrl: "",
+      
       title: "",
       img: null
     };
@@ -25,7 +25,7 @@ class CreateProduct extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { description, quantity, price, img } = this.state;
+    const { description, quantity, price,title, img } = this.state;
 debugger
     console.log(description, quantity, price, img)
     debugger
@@ -34,7 +34,7 @@ debugger
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({description, quantity, price, img}),
+      body: JSON.stringify({description, quantity, title, price, img}),
       credentials: "include",
     });
   };
@@ -55,11 +55,9 @@ debugger
     widget.open()
   }
   render() {
-    const { description, quantity, price, imageUrl, title, img } = this.state;
+    const { description, quantity, price,title, img } = this.state;
     return (
       <PageWrapper>
-        <button onClick={this.openWidget}>Upload image</button>
-        {img?(<img src={img}/>):null}
 
 
         <form className={style.container} onSubmit={this.handleSubmit}>
@@ -94,10 +92,19 @@ debugger
             label="Image"
             id="image"
           /> */}
+          <div>
+        <button onClick={this.openWidget}>Upload image</button>
+
+
+          </div>
 
 
           <Button title="Create" />
         </form>
+        <div className={style.picture}>
+        {img?(<p>Снимката която качвате: <img  width="300" height="300" src={img}/>   </p> ):null}
+
+        </div>
 
       </PageWrapper>
     );

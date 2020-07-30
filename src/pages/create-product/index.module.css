@@ -1,3 +1,8 @@
 .container{
     text-align: center;
 }
+
+.picture{
+    width: min-content;
+    height: min-content;
+}
