@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import style from "./index.module.css";
 
-const Product = ({ description, imageUrl, price, title,quantity, author, index }) => {
+const Product = ({ description, img, price, title,quantity, author, index }) => {
   return (
     <div className={style.container}>
       <div>
@@ -16,7 +16,7 @@ const Product = ({ description, imageUrl, price, title,quantity, author, index }
         </p>
       </div>
       <div>
-        <img src={imageUrl} alt="Product image" width="200" height="200" />
+        <img src={img} alt="Product image" width="200" height="200" />
       </div>
       <div><u>Цена:</u> {price} лв</div>
       <div>

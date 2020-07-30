@@ -13,7 +13,8 @@ class CreateProduct extends Component {
       quantity: 0,
       price: 0,
       imageUrl: "",
-      title: ""
+      title: "",
+      img: null
     };
   }
   handleChange = (event, type) => {
@@ -24,22 +25,43 @@ class CreateProduct extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    // const { description, quantity, price, imageUrl } = this.state;
-
-    console.log(this.state)
+    const { description, quantity, price, img } = this.state;
+debugger
+    console.log(description, quantity, price, img)
+    debugger
       await fetch("http://localhost:9999/api/product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...this.state}),
+      body: JSON.stringify({description, quantity, price, img}),
       credentials: "include",
     });
   };
+  openWidget=(e)=>{
+    e.preventDefault()
+    const widget = window.cloudinary.createUploadWidget({
+      cloudName: 'emo-cloud',
+      uploadPreset: "emanuil"
+    }, (error, result)=>{
+      console.log('Error', error)
+      console.log('Result', result)
+      if(result.event==="success"){
+        this.setState({
+          img: result.info.url
+        })
+      }
+    })
+    widget.open()
+  }
   render() {
-    const { description, quantity, price, imageUrl, title } = this.state;
+    const { description, quantity, price, imageUrl, title, img } = this.state;
     return (
       <PageWrapper>
+        <button onClick={this.openWidget}>Upload image</button>
+        {img?(<img src={img}/>):null}
+
+
         <form className={style.container} onSubmit={this.handleSubmit}>
           <Title title="Create Product" />
           <Input
@@ -66,15 +88,17 @@ class CreateProduct extends Component {
             label="Price"
             id="price"
           />
-          <Input
+          {/* <Input
             value={imageUrl}
             onChange={(e) => this.handleChange(e, "imageUrl")}
             label="Image"
             id="image"
-          />
+          /> */}
+
 
           <Button title="Create" />
         </form>
+
       </PageWrapper>
     );
   }
