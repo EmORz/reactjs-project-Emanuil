@@ -2,8 +2,11 @@ const models = require('../models');
 
 module.exports = {
     get: (req, res, next) => {
-        models.Client.find()
-            .then((origamies) => res.send(origamies))
+        models.Client.find().populate('users').populate('products')
+            .then((client) =>{
+                console.log("In=>",client)
+                res.send(client)
+            } )
             .catch(next);
     },
 

@@ -7,8 +7,7 @@ const clientSchema = new Schema({
 
    
     client: {
-        type: String,
-        required: true
+        type: String
     }
   
    

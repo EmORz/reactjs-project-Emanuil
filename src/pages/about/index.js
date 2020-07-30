@@ -13,16 +13,18 @@ class About extends Component {
   }
 
   componentDidMount(){
-    //this.loadClients()
+    this.loadClients()
   }
-  // loadClients=async()=>{
-  //   const promise = await fetch("http://localhost:9999/api/client");
-  //   debugger
-  //   const clients = await promise.json()
-  //   this.setState({
-  //     clients
-  //   })
-  // }
+  loadClients=async()=>{
+    
+    const promise = await fetch("http://localhost:9999/api/client");
+    const clients = await promise.json()
+    
+
+    this.setState({
+      clients
+    })
+  }
   handleChange = (event, type) => {
     const newState = {};
     newState[type] = event.target.value;
@@ -38,8 +40,7 @@ class About extends Component {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({client}),
-      //credentials: "include",
+      body: JSON.stringify({client})
     });
 
   }
@@ -73,6 +74,8 @@ class About extends Component {
                 Изпрати
               </button>
             </form>
+            <h2>Коментари на клиенти</h2>
+    {clients.map((o, index) => (<div><h3>{index}.{o.client}</h3></div>))}
             <h2>За връзка с нас:</h2>
 
             <div>
