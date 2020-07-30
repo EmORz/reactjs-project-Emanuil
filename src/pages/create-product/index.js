@@ -86,12 +86,7 @@ debugger
             label="Price"
             id="price"
           />
-          {/* <Input
-            value={imageUrl}
-            onChange={(e) => this.handleChange(e, "imageUrl")}
-            label="Image"
-            id="image"
-          /> */}
+       
           <div>
         <button onClick={this.openWidget}>Upload image</button>
 
