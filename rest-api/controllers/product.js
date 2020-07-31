@@ -13,7 +13,7 @@ module.exports = {
  
 
       
-        models.Product.create({ description, quantity, price, img, title })
+        models.Product.create({ description, quantity, price, img, title, author: _id })
             .then((createdOrigami) => {
                 console.log("Yep: ",createdOrigami)
                 return Promise.all([
