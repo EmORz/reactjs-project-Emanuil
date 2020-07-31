@@ -26,10 +26,8 @@ class CreateProduct extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const { description, quantity, price,title, img } = this.state;
-debugger
-    console.log(description, quantity, price, img)
-    debugger
-      await fetch("http://localhost:9999/api/product", {
+
+      const product = await fetch("http://localhost:9999/api/product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,6 +35,16 @@ debugger
       body: JSON.stringify({description, quantity, title, price, img}),
       credentials: "include",
     });
+    if(product){
+      if(window.confirm('You create successfull product! Do you want to create another?')){
+        
+        window.location.reload()
+       }else{
+        this.props.history.push('/')
+      }
+    
+
+    }
   };
   openWidget=(e)=>{
     e.preventDefault()
