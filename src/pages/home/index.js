@@ -6,6 +6,7 @@ import Title from "../../components/title";
 import Products from "../../components/products";
 import Input from "../../components/Input";
 import UserContext from "../../Context";
+import Result from '../../components/result/index'
 
 class Publications extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Publications extends Component {
     this.state = {
       products: [],
       result: [],
-      title: "",
+      searchData: "",
     };
   }
 
@@ -54,43 +55,26 @@ class Publications extends Component {
     this.setState(newState);
   };
 
-  Search=()=>{
-    debugger
-    const { title, products } = this.state;
-
-    const searchResult = products.filter(find => find.title === title)
-
-    this.setState({
-      result: searchResult
-    })
-    debugger
-    console.log("Here SearchResult=>", searchResult)
-
-
-  }
+  
 
   render() {
-    const { title } = this.state;
+    const { searchData } = this.state;
 
 
     return (
       <PageWrapper>
         <Title title="Home" />
    
-        <form  onSubmit={this.Search}>
- 
-          <Input
-          value={title}
-          onChange={(e) => this.handleChange(e, "title")}
-          label="Title"
-          id="title"
+        <Input
+          value={searchData}
+          onChange={(e) => this.handleChange(e, "searchData")}
+          label="Serch Box"
+          id="Search"
         />
-        <button >Search</button>
-        </form>
- 
+        {searchData?  <Result searchData={searchData}/>: <Products/>}
+       
 
-        
-        <Products />
+ 
       </PageWrapper>
     );
   }
