@@ -18,9 +18,12 @@ class Result extends Component {
   };
   renderProducts() {
     const { products } = this.state;
-
-    const p = products.filter((a) => a.title === this.props.searchData);
-
+//description, img, price, title,quantity
+debugger
+    const p = products.filter((a) => a.title === this.props.searchData
+    || a.description === this.props.searchData
+    || a.price+'' === this.props.searchData);
+console.log(p)
     if (p) {
       return p.map((product, index) => {
         return <Product key={product._id} index={index} {...product} />;
@@ -33,7 +36,7 @@ class Result extends Component {
     this.getProducts();
   }
   render() {
-      console.log(this.renderProducts())
+
       if(this.renderProducts().length===0){
           return <h1>There is no result from search!</h1>
       }
