@@ -11,13 +11,14 @@ class Input extends Component {
             label,
             value, 
             onChange,
-            type
+            type,
+            size
         } = this.props
         return ( 
             <div>
                 <label for={id}>
                     {label}
-                    <input id={id} type={type || "text"} value={value} onChange={onChange}/>
+                    <input size={size|| ""}id={id} type={type || "text"} value={value} onChange={onChange}/>
                 </label>
             </div>
          );

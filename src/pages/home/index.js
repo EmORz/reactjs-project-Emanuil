@@ -66,10 +66,11 @@ class Publications extends Component {
         <Title title="Home" />
    
         <Input
-          value={searchData}
+          value={searchData ||"enter something"}
           onChange={(e) => this.handleChange(e, "searchData")}
-          label="Serch Box"
+          label="Search Box"
           id="Search"
+          size="150"
         />
         {searchData?  <Result searchData={searchData}/>: <Products/>}
        
