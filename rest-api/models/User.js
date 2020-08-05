@@ -19,7 +19,8 @@ const userSchema = new Schema({
         require: true
     },
 
-    purchase: [{ type: ObjectId, ref: "Product" }]
+    purchase: [{ type: ObjectId, ref: "Product" }],
+    createdProducts: [{ type: ObjectId, ref: "Product" }]
 
 });
 

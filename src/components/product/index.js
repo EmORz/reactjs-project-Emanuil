@@ -8,12 +8,53 @@ constructor(props){
     quantityP: 0
   }
 }
-  makePurchase = (e)=>{
+  makePurchase = async (e)=>{
     e.preventDefault()
 //ToDo make purchase logic
-    console.log(this.state.quantityP)
+
+ const {
+      quantityP
+    } = this.state;
+
+    const temp = +quantityP
+
+const {
+  quantity,
+  _id,
+  author,
+  price,
+  img,
+  title,
+  description
+} =this.props
+debugger
+
+
+
+
+   const updateProduct = await fetch('http://localhost:9999/api/product/'+_id, {
+method: 'PUT',
+   headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+body: JSON.stringify({
+title,
+quantity: quantity - temp,
+img,
+description,
+author,
+_id,
+price
+})
+})
+
+debugger
 
   }
+
+  
+
   handleChange = (event, type) => {
     const newState = {};
     newState[type] = event.target.value;

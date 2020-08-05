@@ -17,7 +17,7 @@ module.exports = {
             .then((createdOrigami) => {
                 console.log("Yep: ",createdOrigami)
                 return Promise.all([
-                    models.User.updateOne({ _id }, { $push: { purchase: createdOrigami } }),
+                    models.User.updateOne({ _id }, { $push: { createdProducts: createdOrigami } }),
                     models.Product.findOne({ _id: createdOrigami._id })
                 ]);
             })
@@ -29,14 +29,26 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { description } = req.body;
-        models.Product.updateOne({ _id: id }, { description })
-            .then((updatedOrigami) => res.send(updatedOrigami))
+        const { _id } = req.user;
+
+
+        const { quantity } = req.body;
+
+        debugger
+        models.Product.updateOne({ _id: id }, { quantity })
+            .then((updatedOrigami) => {
+                console.log(updatedOrigami)
+                
+              
+                 res.send(updatedOrigami)
+                })
             .catch(next)
+            
     },
 
     delete: (req, res, next) => {
         const id = req.params.id;
+
         models.Product.deleteOne({ _id: id })
             .then((removedOrigami) => res.send(removedOrigami))
             .catch(next)
