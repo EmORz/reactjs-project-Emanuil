@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header componenents shoud render authenticate router 1`] = `
+<header
+  className="navigation"
+>
+  <ul>
+    <li
+      className="header-list-item"
+    >
+      <a
+        className="header-link"
+        href="/"
+      >
+        Home
+      </a>
+    </li>
+    <li
+      className="header-list-item"
+    >
+      <a
+        className="header-link"
+        href="/register"
+      >
+        Register
+      </a>
+    </li>
+    <li
+      className="header-list-item"
+    >
+      <a
+        className="header-link"
+        href="/login"
+      >
+        Login
+      </a>
+    </li>
+    <li
+      className="header-list-item"
+    >
+      <a
+        className="header-link"
+        href="/about"
+      >
+        About
+      </a>
+    </li>
+  </ul>
+</header>
+`;
+
+exports[`Header componenents shoud render unauthenticate router 1`] = `
+<header
+  className="navigation"
+>
+  <ul>
+    <li
+      className="header-list-item"
+    >
+      <a
+        className="header-link"
+        href="/"
+      >
+        Home
+      </a>
+    </li>
+    <li
+      className="header-list-item"
+    >
+      <a
+        className="header-link"
+        href="/register"
+      >
+        Register
+      </a>
+    </li>
+    <li
+      className="header-list-item"
+    >
+      <a
+        className="header-link"
+        href="/login"
+      >
+        Login
+      </a>
+    </li>
+    <li
+      className="header-list-item"
+    >
+      <a
+        className="header-link"
+        href="/about"
+      >
+        About
+      </a>
+    </li>
+  </ul>
+</header>
+`;
