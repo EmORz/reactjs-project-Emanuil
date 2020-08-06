@@ -20,7 +20,8 @@ const userSchema = new Schema({
     },
 
     purchase: [{ type: ObjectId, ref: "Product" }],
-    createdProducts: [{ type: ObjectId, ref: "Product" }]
+    createdProducts: [{ type: ObjectId, ref: "Product" }],
+    role: [{type: String}]
 
 });
 

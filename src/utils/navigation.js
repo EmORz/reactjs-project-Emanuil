@@ -1,5 +1,5 @@
 const getNavigation = (loggedIn, user) => {
-  const authLinks = [
+  const adminLinks = [
     {
       title: "Home",
       link: '/'
@@ -18,6 +18,22 @@ const getNavigation = (loggedIn, user) => {
       title: "Create Product",
       link: "/create-product",
     }
+  ]
+  const authLinks = [
+    {
+      title: "Home",
+      link: '/'
+    },
+    
+    {
+      title: 'Profile',
+      link: `/profile/${user && user.id}`
+    },
+    {
+      title: "About",
+      link: "/about",
+    }
+   
     
   ];
   const guestLinks = [
@@ -39,7 +55,14 @@ const getNavigation = (loggedIn, user) => {
     }
     
   ];
-  return loggedIn? authLinks:guestLinks;
+  if(loggedIn && !user.role.includes('admin')){
+    return authLinks
+  }if(loggedIn && user.role.includes('admin')){
+
+    return adminLinks
+  }else{
+    return guestLinks
+  }
 };
 
 export default getNavigation;

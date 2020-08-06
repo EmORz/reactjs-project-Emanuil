@@ -5,7 +5,7 @@ import Title from "../../components/title";
 import PageWrapper from "../../components/page-wrapper";
 import Input from "../../components/Input";
 import authenticate from "../../utils/authenticate";
-import UserContext from '../../Context'
+import UserContext from "../../Context";
 
 class Login extends Component {
   constructor(props) {
@@ -16,30 +16,31 @@ class Login extends Component {
     };
   }
 
-  static contextType = UserContext
+  static contextType = UserContext;
 
   handleSubmit = async (e) => {
     e.preventDefault();
 
     const { username, password } = this.state;
-
-
-    
+debugger
+    console.log(this.context)
+    debugger;
     await authenticate(
       "http://localhost:9999/api/user/login",
       {
-        username, 
+        username,
         password,
       },
       (user) => {
-        this.context.logIn(user)
-
+        debugger
+        this.context.logIn(user);
+        console.log(user);
         this.props.history.push("/");
-      },(e)=>{
-        console.log('Érror', e)
+      },
+      (e) => {
+        console.log("Érror", e);
       }
     );
-
   };
   handleChange = (event, type) => {
     const newState = {};
@@ -54,7 +55,6 @@ class Login extends Component {
         <form className={style.container} onSubmit={this.handleSubmit}>
           <Title title="Login" />
           <Input
-      
             value={username}
             onChange={(e) => this.handleChange(e, "username")}
             label="Username"

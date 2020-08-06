@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       user: null,
+      role: []
     };
   }
 
@@ -58,10 +59,13 @@ class App extends Component {
  
       return promise.json()
     }).then(response => {
+
+
       if(response.status) {
         this.logIn({
           username: response.user.username,
-          id: response.user._id
+          id: response.user._id,
+          role: response.user.role
         })
       } else {
         this.logOut()
@@ -76,7 +80,8 @@ class App extends Component {
     return (
     <UserContext.Provider value={
       {
-        loggedIn, user,
+        loggedIn,
+        user,
         logIn: this.logIn,
         logOut: this.logOut
       }

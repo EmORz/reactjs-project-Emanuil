@@ -20,8 +20,8 @@ class Result extends Component {
     const { products } = this.state;
 //description, img, price, title,quantity
 debugger
-    const p = products.filter((a) => a.title === this.props.searchData
-    || a.description === this.props.searchData
+    const p = products.filter((a) => a.title.toLowerCase() === this.props.searchData.toLowerCase()
+    || a.description.toLowerCase() === this.props.searchData.toLowerCase()
     || a.price+'' === this.props.searchData);
 console.log(p)
     if (p) {

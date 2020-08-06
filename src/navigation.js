@@ -10,16 +10,31 @@ import Register from "./pages/register";
 import Profile from "./pages/profile";
 import Error from "./pages/error";
 import About from "./pages/about";
-import UserContex from "./Context";
 import UserContext from "./Context";
 import CreateProduct from "./pages/create-product";
 
 class Navigation extends Component {
   static contextType = UserContext;
 
+  getUser =  ()=>{
+    const { user } = this.context;
+
+    return user
+
+  }
+  
   render() {
     const { loggedIn } = this.context;
-    //debugger
+
+    const user =  this.getUser()
+    let isAdmin
+
+    if(user){
+      const t = user.role
+      isAdmin = t.includes('admin')
+    }
+ 
+
 
     return (
       <BrowserRouter>
@@ -29,7 +44,7 @@ class Navigation extends Component {
           {loggedIn && <Route path="/profile/:userid" component={Profile} />}
           <Route path="/register" component={Register} />
           <Route path="/about" component={About} />
-          {loggedIn && <Route path="/create-product" component={CreateProduct} />}
+          {loggedIn && isAdmin && <Route path="/create-product" component={CreateProduct} />}
           <Route component={Error} />
         </Switch>
       </BrowserRouter>
