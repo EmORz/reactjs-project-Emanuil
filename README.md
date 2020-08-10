@@ -8,8 +8,10 @@ Individual students project. In developer mode.
 The main idea for the site is an online bookstore. There is a registration for users. Users can be administrators or regular users. Registered users have a profile page that displays their username,
 and if they are admins, the products they have created. Admins can add products that are displayed on the Home page.
 There is a search engine that searches among the products by name, described, price, and the found products are displayed on the Home page, if nothing is found, a message is displayed.
+### Example
 
-![Register](https://res.cloudinary.com/emo-cloud/image/upload/v1597072415/Opera_%D0%9C%D0%BE%D0%BC%D0%B5%D0%BD%D1%82%D0%BD%D0%B0_%D1%81%D0%BD%D0%B8%D0%BC%D0%BA%D0%B0_2020-08-10_181250_localhost_tyxdju.png)
+- [Register](https://res.cloudinary.com/emo-cloud/image/upload/v1597072415/Opera_%D0%9C%D0%BE%D0%BC%D0%B5%D0%BD%D1%82%D0%BD%D0%B0_%D1%81%D0%BD%D0%B8%D0%BC%D0%BA%D0%B0_2020-08-10_181250_localhost_tyxdju.png)
+- [Login](https://res.cloudinary.com/emo-cloud/image/upload/v1597073402/Login_gucisr.png)
 ## Available Scripts
 
 In the project directory, you can run:
