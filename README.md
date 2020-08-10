@@ -1,10 +1,13 @@
 Individual students project. In developer mode.
 ### Start
 - npm i
-- npm start for reactjs
-- node . api-rest
+- npm start for reactjs run on port 3000
+- node . api-rest run on port 9999 =>" Listening on port 9999!"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Basic description of project
+The main idea for the site is an online bookstore. There is a registration for users. Users can be administrators or regular users. Registered users have a profile page that displays their username,
+and if they are admins, the products they have created. Admins can add products that are displayed on the Home page.
+There is a search engine that searches among the products by name, described, price, and the found products are displayed on the Home page, if nothing is found, a message is displayed.
 
 ## Available Scripts
 
