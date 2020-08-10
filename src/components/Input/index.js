@@ -19,6 +19,7 @@ class Input extends Component {
             <div>
                 <label for={id}>
                     {label}
+                    <br/>
                     <input placeholder={placeholder || ""} size={size|| ""}id={id} type={type || "text"} value={value} onChange={onChange}/>
                 </label>
             </div>

@@ -11,10 +11,11 @@ module.exports = {
     },
 
     post: (req, res, next) => {
-        const { client } = req.body;    //const { _id } = req.user;
-        models.Client.create({ client})
+        const { client, username, email, time } = req.body;    //const { _id } = req.user;
+console.log(req.body)
+        models.Client.create({ client, username, email, time})
             .then((client) => {
-      console.log('Inside', client)
+      console.log('Inside', client, username, email, time)
         
                
            

@@ -8,7 +8,21 @@ const clientSchema = new Schema({
    
     client: {
         type: String
+    },
+    username: {
+        type: String,
+        required: true
+    },
+
+    email: {
+        type: String,
+        require: true
+    },
+
+    time: {
+        type: String
     }
+
   
    
 

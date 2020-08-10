@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Product from '../product'
+import UserContext from '../../Context'
 
 
 class Products
@@ -10,6 +11,8 @@ class Products
             products: []
          }
     }
+    static contextType = UserContext
+    
     getProducts = async ()=> {
         const promise = await fetch('http://localhost:9999/api/product')
         const products = await promise.json()

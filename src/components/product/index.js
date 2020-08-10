@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import style from "./index.module.css";
+import UserContext from '../../Context'
+import { useHistory } from "react-router"
+import {Redirect} from "react-router-dom";
 
 class Product extends Component {
   constructor(props) {
@@ -8,9 +11,15 @@ class Product extends Component {
       quantityP: 0,
     };
   }
+
+  static contextType = UserContext
   makePurchase = async (e) => {
     e.preventDefault();
-    //ToDo make purchase logic
+
+    if(!this.context.user){
+      window.confirm('To make purchase must be login in system!')
+      return window.location.href = "http://localhost:3000/login"
+    }
 
     const { quantityP } = this.state;
 
@@ -27,6 +36,10 @@ class Product extends Component {
     } = this.props;
     debugger;
 
+    if(temp<=0){
+      window.confirm('Quantity of product must be more than zero!')
+      return window.location.reload()
+    }
     const currentQuantity = quantity - temp;
     const bill = price * temp
 

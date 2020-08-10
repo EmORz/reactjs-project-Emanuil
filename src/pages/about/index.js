@@ -2,55 +2,60 @@ import React, { Component } from "react";
 import Raper from "../../components/page-wrapper";
 import styles from "./index.module.css";
 import UserContext from "../../Context";
+import Input from "../../components/Input";
+import Button from "../../components/button/submit-button";
 
 class About extends Component {
   constructor(props) {
     super(props);
     this.state = {
       client: "",
-      clients:[]
+      clients: [],
+      username: "",
+      email: "",
     };
   }
 
-  componentDidMount(){
-    this.loadClients()
+  componentDidMount() {
+    this.loadClients();
   }
-  loadClients=async()=>{
-    
+  loadClients = async () => {
     const promise = await fetch("http://localhost:9999/api/client");
-    const clients = await promise.json()
-    
+    const clients = await promise.json();
 
     this.setState({
-      clients
-    })
-  }
+      clients,
+    });
+  };
   handleChange = (event, type) => {
     const newState = {};
     newState[type] = event.target.value;
     this.setState(newState);
   };
-  onSubmitC= async(e)=>{
-    e.preventDefault()
+  onSubmitC = (e) => {
+    e.preventDefault();
 
-    const {client } = this.state
+    const time = Date();
 
-   await fetch("http://localhost:9999/api/client", {
+    debugger;
+    const { client, username, email } = this.state;
+    debugger;
+    fetch("http://localhost:9999/api/client", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({client})
+      body: JSON.stringify({ client, username, email, time }),
     });
 
-  }
-
+    window.location.reload();
+  };
 
   static contextType = UserContext;
 
   render() {
-    const { client, clients } = this.state;
-    console.log(clients)
+    const { client, clients, username, email } = this.state;
+    console.log(clients);
     return (
       <Raper>
         <div className={styles.container}>
@@ -58,7 +63,27 @@ class About extends Component {
             <h1>Контакти</h1>
             <br></br>
             <form onSubmit={this.onSubmitC}>
-              <label for="client">Форма за споделяне на мнения за сайта?</label>
+              <label for="client">
+                Форма за споделяне на мнения за сайта? Коментарите не са
+                анонимни!
+              </label>
+              <br />
+              <br />
+
+              <Input
+                value={username}
+                onChange={(e) => this.handleChange(e, "username")}
+                label="Username"
+                id="username"
+              />
+              <br />
+
+              <Input
+                value={email}
+                onChange={(e) => this.handleChange(e, "email")}
+                label="Email"
+                id="email"
+              />
               <br />
 
               <textarea
@@ -70,12 +95,18 @@ class About extends Component {
               ></textarea>
               <br />
 
-              <button type="submit" class="btn">
-                Изпрати
-              </button>
+              <Button title="Send" />
             </form>
             <h2>Коментари на клиенти</h2>
-    {clients.map((o, index) => (<div><h3>{index}.{o.client}</h3></div>))}
+            {clients.map((o, index) => (
+              <div>
+                <h3>
+                  {index}.{o.client}
+                </h3>
+                <p>Автор: {o.username}</p>
+                <time>{o.time.split(" ").slice(0, 5).join("-")}</time>
+              </div>
+            ))}
             <h2>За връзка с нас:</h2>
 
             <div>
