@@ -1,5 +1,6 @@
 Individual students project. In developer mode.
 ### Start
+- npm i
 - npm start for reactjs
 - node . api-rest
 
