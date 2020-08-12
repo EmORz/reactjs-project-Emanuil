@@ -6,7 +6,9 @@ import Title from "../../components/title";
 import Products from "../../components/products";
 import Input from "../../components/Input";
 import UserContext from "../../Context";
-import Result from '../../components/result/index'
+import Result from "../../components/result/index";
+
+import Clock from "react-clock";
 
 class Publications extends Component {
   constructor(props) {
@@ -16,9 +18,13 @@ class Publications extends Component {
       products: [],
       result: [],
       searchData: "",
+      date: new Date(),
     };
   }
 
+  componentDidMount() {
+    setInterval(() => this.setState({ date: new Date() }), 1000);
+  }
   static contextType = UserContext;
 
   getProducts = async () => {
@@ -38,7 +44,6 @@ class Publications extends Component {
   }
 
   renderSearch() {
- 
     const { result } = this.state;
 
     return result.map((product, index) => {
@@ -55,28 +60,28 @@ class Publications extends Component {
     this.setState(newState);
   };
 
-  
-
   render() {
     const { searchData } = this.state;
-
 
     return (
       <PageWrapper>
         <Title title="Home" />
-   
-        <Input
-          value={searchData}
-          onChange={(e) => this.handleChange(e, "searchData")}
-          label="Search Box"
-          id="Search"
-          size="150"
-          placeholder="какво търсите ...?"
-        />
-        {searchData?  <Result searchData={searchData}/>: <Products/>}
-       
+        <div className={styles.clock} id="clock">
+          <Clock id="clock" value={this.state.date} />
+        </div>
 
- 
+        <div className={styles.search}>
+          <Input
+            value={searchData}
+            onChange={(e) => this.handleChange(e, "searchData")}
+            label="Search Box"
+            id="Search"
+            size="150"
+            placeholder="какво търсите ...?"
+          />
+   
+        </div>
+        {searchData ? <Result searchData={searchData} /> : <Products />}
       </PageWrapper>
     );
   }

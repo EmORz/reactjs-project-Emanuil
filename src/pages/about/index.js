@@ -136,9 +136,7 @@ class About extends Component {
                   ></textarea>
                   <br />
 
-                  <button type="submit" class="btn">
-                    Send
-                  </button>
+                  <Button title="Send" />
                 </form>
               </div>
 

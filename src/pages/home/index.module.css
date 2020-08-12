@@ -14,3 +14,18 @@
     /* border:1px solid red; */
     height: 45vh;
   }
+
+  .clock{
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em
+
+   
+  }
+
+  .serach{
+    display: block;
+    margin-left: auto;
+    margin-right: aut
+  }
