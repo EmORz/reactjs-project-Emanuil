@@ -9,17 +9,29 @@ class Product extends Component {
     super(props);
     this.state = {
       quantityP: 0,
+      error: false
     };
   }
 
   static contextType = UserContext
+
   makePurchase = async (e) => {
     e.preventDefault();
 
     if(!this.context.user){
-      window.confirm('To make purchase must be login in system!')
-      return window.location.href = "http://localhost:3000/login"
+      this.setState({
+        error: {
+          message: "Check the Form for errors",
+          errors: {
+            data: `To make purchase must be login in system!`,
+          },
+        },
+      });
+      return 
     }
+  
+     // return window.location.href = "http://localhost:3000/login"
+    
 
     const { quantityP } = this.state;
 
@@ -38,7 +50,15 @@ class Product extends Component {
 
     if(temp<=0){
       window.confirm('Quantity of product must be more than zero!')
-      return window.location.reload()
+      this.setState({
+        error: {
+          message: "Check the Form for errors",
+          errors: {
+            data: "Quantity of product must be more than zero!",
+          },
+        },
+      });
+      return 
     }
     const currentQuantity = quantity - temp;
     const bill = price * temp
@@ -92,9 +112,22 @@ class Product extends Component {
     } = this.props;
 
     const { quantityP } = this.state;
+    let errors = null;
+    if (this.state.error) {
+      errors = (
+        <div>
+          <h2>{this.state.error.message}</h2>
+      <h2>{this.state.error.errors.data}</h2>
+
+        </div>
+      );
+    }
 
     return (
+      
       <div className={style.container}>
+          {errors}
+        
         <div>
           <h1>
             Заглавие: <br />

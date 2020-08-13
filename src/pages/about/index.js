@@ -13,6 +13,7 @@ class About extends Component {
       clients: [],
       username: "",
       email: "",
+      error: false
     };
   }
 
@@ -39,6 +40,44 @@ class About extends Component {
 
     debugger;
     const { client, username, email } = this.state;
+
+    if(username.length<=0 && client.length<=0 && email.length<=0){
+      this.setState({
+        error: {
+          message: "Check the Form for errors",
+          errors: {
+            data: "Enter some data in boxs!",
+          },
+        },
+      });
+      return
+    }
+
+    const emailValidate = new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)
+    if(!emailValidate){
+      this.setState({
+        error: {
+          message: "Check the Form for errors",
+          errors: {
+            data: "Your email is not valid!",
+          }
+        }
+      });
+      return
+    }
+
+    if(client.length<10 ){
+      this.setState({
+        error: {
+          message: "Check the Form for errors",
+          errors: {
+            data: "Enter message with more than 10 characters!",
+          }
+        }
+      });
+      return
+    }
+
     debugger;
     fetch("http://localhost:9999/api/client", {
       method: "POST",
@@ -55,13 +94,24 @@ class About extends Component {
 
   render() {
     const { client, clients, username, email } = this.state;
-    console.log(clients);
+
+    let errors = null;
+    if (this.state.error) {
+      errors = (
+        <div>
+          <h2>{this.state.error.message}</h2>
+      <h2>{this.state.error.errors.data}</h2>
+
+        </div>
+      );
+    }
     return (
       <Raper>
         <div className={styles.container}>
           <div>
             <h1>Контакти</h1>
             <br></br>
+            {errors}
             <form onSubmit={this.onSubmitC}>
               <label for="client">
                 Форма за споделяне на мнения за сайта? Коментарите не са
