@@ -13,6 +13,7 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      error: false
     };
   }
 
@@ -22,25 +23,49 @@ class Login extends Component {
     e.preventDefault();
 
     const { username, password } = this.state;
-debugger
-    console.log(this.context)
+
+    if(username.length<=0 && password.length<=0){
+      this.setState({
+        error: {
+          message: "Check the Form for errors",
+          errors: {
+            data: "Enter some data in boxs!",
+          },
+        },
+      });
+      return
+    }
+
     debugger;
-    await authenticate(
-      "http://localhost:9999/api/user/login",
-      {
-        username,
-        password,
-      },
-      (user) => {
-        debugger
-        this.context.logIn(user);
-        console.log(user);
-        this.props.history.push("/");
-      },
-      (e) => {
-        console.log("Érror", e);
-      }
-    );
+
+      const checkForError = await authenticate(
+        "http://localhost:9999/api/user/login",
+        {
+          username,
+          password,
+        },
+        (user) => {
+          debugger
+          this.context.logIn(user);
+          console.log(user);
+          this.props.history.push("/");
+        },
+        (e) => {
+          console.log("Érror", e);
+          this.setState({
+            error: {
+              message: "Check the Form for errors",
+              errors: {
+                data: "Invalid user data - password or username!",
+              },
+            },
+          });
+        }
+      );
+      
+      
+    
+
   };
   handleChange = (event, type) => {
     const newState = {};
@@ -50,8 +75,19 @@ debugger
   render() {
     const { username, password } = this.state;
 
+    let errors = null;
+    if (this.state.error) {
+      errors = (
+        <div>
+          <h2>{this.state.error.message}</h2>
+      <h2>{this.state.error.errors.data}</h2>
+
+        </div>
+      );
+    }
     return (
       <PageWrapper>
+            {errors}
         <form className={style.container} onSubmit={this.handleSubmit}>
           <Title title="Login" />
           <Input

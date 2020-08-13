@@ -32,15 +32,27 @@ class Register extends Component {
    e.preventDefault()
    const {
     username,
-    password
+    password,
+    repassword
   } = this.state
+  if(username.length<=0 && password.length<=0 && repassword.length<=0){
+    this.setState({
+      error: {
+        message: "Check the Form for errors",
+        errors: {
+          data: "Enter some data in boxs!",
+        },
+      },
+    });
+    return
+  }
   debugger
-    if (this.state.password !== this.state.repassword) {
+    if (password !== repassword) {
       this.setState({
         error: {
           message: "Check the Form for errors",
           errors: {
-            repeat: "Password dont match!",
+            data: "Password dont match!",
           },
         },
       });
@@ -71,13 +83,16 @@ class Register extends Component {
       errors = (
         <div>
           <h2>{this.state.error.message}</h2>
+      <h2>{this.state.error.errors.data}</h2>
+
         </div>
       );
     }
     return (
       <PageWrapper>
+              {errors}
         <form className={style.container} onSubmit={this.handlerSubmit}>
-          {errors}
+    
           <Title title="Register" />
 
           <Input
