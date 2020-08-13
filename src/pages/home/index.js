@@ -8,7 +8,9 @@ import Input from "../../components/Input";
 import UserContext from "../../Context";
 import Result from "../../components/result/index";
 
+import Calendar from 'react-calendar';
 import Clock from "react-clock";
+import 'react-calendar/dist/Calendar.css';
 
 class Publications extends Component {
   constructor(props) {
@@ -19,11 +21,13 @@ class Publications extends Component {
       result: [],
       searchData: "",
       date: new Date(),
+      calendar: new Date()
     };
   }
 
   componentDidMount() {
-    setInterval(() => this.setState({ date: new Date() }), 1000);
+    setInterval(() => this.setState({ date: new Date(),
+    calendar: this.calendar }), 1000);
   }
   static contextType = UserContext;
 
@@ -69,6 +73,10 @@ class Publications extends Component {
         <div className={styles.clock} id="clock">
           <Clock id="clock" value={this.state.date} />
         </div>
+        <br/>
+        <Calendar className={styles.clock}
+          value={this.state.calendar}
+        />
 
         <div className={styles.search}>
           <Input
